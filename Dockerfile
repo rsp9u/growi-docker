@@ -1,16 +1,15 @@
 FROM node:10-alpine
 LABEL maintainer Yuki Takei <yuki@weseek.co.jp>
 
-ENV APP_VERSION v3.5.16
 ENV APP_DIR /opt/growi
-ARG ARCHIVE_NAME=${APP_VERSION}
+ARG ARCHIVE_URL=https://github.com/weseek/growi/archive/v3.5.16.tar.gz
 
 # update tar for '--strip-components' option
 RUN apk add --no-cache --update tar
 # download GROWI archive from Github
 RUN apk add --no-cache --virtual .dl-deps curl \
     && mkdir -p ${APP_DIR} \
-    && curl -SL https://github.com/weseek/growi/archive/${ARCHIVE_NAME}.tar.gz \
+    && curl -SL ${ARCHIVE_URL} \
         | tar -xz -C ${APP_DIR} --strip-components 1 \
     && apk del .dl-deps
 
