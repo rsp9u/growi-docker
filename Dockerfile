@@ -21,6 +21,8 @@ RUN apk add --no-cache --virtual .build-deps git \
     && yarn \
     # install official plugins
     && yarn add growi-plugin-lsx growi-plugin-pukiwiki-like-linker growi-plugin-attachment-refs \
+    # install additional plugins
+    && yarn add growi-plugin-schedaus \
     # install peerDependencies
     && yarn add -D react-images react-motion \
     # build
